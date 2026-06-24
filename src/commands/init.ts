@@ -21,11 +21,9 @@ async function main(name: string): Promise<void> {
       throw new Error(`Cannot create Kitraw project. The folder "${name}" already exists at "${rootPath}".`);
     }
 
-    // check if the kitraw app already exists
-    if (!fsExtra.pathExistsSync(path.join(process.cwd(), "kitraw.json"))) {
-      fsExtra.copySync(templatePath, rootPath);
-      logger.info(`Initialized empty next-app project in: ${rootPath}`, false);
-    }
+    fsExtra.copySync(templatePath, rootPath);
+    
+    logger.info(`Initialized empty next-app project in: ${rootPath}`, false);
 
   } catch (err: any) {
     logger.error(err.message);
