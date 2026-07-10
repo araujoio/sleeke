@@ -2,6 +2,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { ThemeProvider } from '@/components/theme-provider';
 import { routing } from '@/i18n/routing';
 import { hasLocale } from 'next-intl';
+import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import '@/styles/globals.css';
 
@@ -14,10 +15,12 @@ export default async function RootLayout({children, params}: Props) {
     notFound();
   }
   
+  const messages = await getMessages();
+  
   return (
     <html lang = { locale } suppressHydrationWarning>
       <body>
-        <NextIntlClientProvider>
+        <NextIntlClientProvider messages={messages}>
           <ThemeProvider>
             { children }
           </ThemeProvider>
