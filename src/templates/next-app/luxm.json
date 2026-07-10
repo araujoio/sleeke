@@ -1,0 +1,11 @@
+{  
+  "routes": {
+    "publicRoutes": ["/"],
+    "privateRoutes": []
+  },
+  "i18n": {
+    "defaultLocale": "en",
+    "locales": ["en"],
+    "localeDirectory": "src/locales"
+  }
+}
