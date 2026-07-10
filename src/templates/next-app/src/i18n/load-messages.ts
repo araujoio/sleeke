@@ -1,3 +1,4 @@
+import { existsSync } from "node:fs";
 import config from "../../luxm.json";
 import fs from "node:fs/promises";
 import path from "node:path";
@@ -34,6 +35,9 @@ async function loadProductionMessages(locale: string): Promise<Messages> {
 async function loadDevelopmentMessages(locale: string): Promise<Messages> {
   const localeDirectory = config.i18n?.localeDirectory ?? "src/locales";
   const dir = path.join(process.cwd(), localeDirectory, locale);
+
+  if (!existsSync(dir)) return {};
+  
   const messages: Messages = {};
   await collectJsonFiles(dir, messages);
   return messages;
@@ -55,5 +59,7 @@ async function collectJsonFiles(dir: string, target: Messages): Promise<void> {
 }
 
 async function readJson(filePath: string): Promise<Messages> {
-  return JSON.parse(await fs.readFile(filePath, "utf-8"));
+  const raw = await fs.readFile(filePath, "utf-8");
+  if (!raw.trim()) return {};
+  return JSON.parse(raw);
 }
