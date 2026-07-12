@@ -11,5 +11,22 @@ export default getRequestConfig(async ({ requestLocale }) => {
       ? requested
       : routing.defaultLocale;
 
-  return { locale, messages: await loadMessages(locale) };
+  // Carrega as mensagens do idioma atual
+  const messages = await loadMessages(locale);
+
+  return { 
+    locale, 
+    messages,
+    getMessageFallback({ namespace, key, error }) {
+      const path = [namespace, key].filter((part) => part != null).join('.');
+
+      if (error.code === 'MISSING_MESSAGE') {
+        throw new Error(
+          `[i18n] Tradução obrigatória faltando: "${path}" no idioma "${locale}".`
+        );
+      }
+
+      return path;
+    }
+  };
 });
