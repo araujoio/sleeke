@@ -51,6 +51,31 @@ doing anything else.
 - Never use a bare `git add .` or `git add -A` unless the user explicitly
   says to commit everything / all changes.
 
+### Splitting targets into separate commits (default behavior)
+
+When multiple target files/paths are given, do NOT bundle them into a
+single commit by default — that produces commit messages describing
+unrelated changes lumped together, which pollutes the history.
+
+- **Default: one commit per target file**, each with its own scoped
+  `git diff`, its own Conventional Commit message, and its own changelog
+  entry.
+- **Exception — group into a single commit only when either:**
+  - The user explicitly says the files belong together (e.g. "commit
+    `Button.tsx` and `Button.test.tsx` together, same change"), or
+  - The diffs make it unambiguous they're the same atomic change (e.g. a
+    component file and its matching test/snapshot file that were clearly
+    edited for the same reason, or a rename that touches an import in
+    another file). If there's any doubt, default to separate commits
+    instead of guessing.
+- When grouping, state explicitly why the files were grouped (one
+  sentence) before showing the combined commit message, so the user can
+  correct it if wrong.
+- Process each commit (or group) sequentially: diff → changelog entry →
+  commit message → stage → commit, then move to the next target/group.
+  Push once at the end after all commits are made (not after every single
+  one), unless the user asks to push after each.
+
 ---
 
 ## 3. Analyze Changes
@@ -309,19 +334,16 @@ refactor: Modernize iteration utilities
 
 ## 7. Execute Git Commands
 
-Execute the following steps in order:
+For each commit (or explicitly grouped set of files, per Step 2), repeat
+steps 1–4 below. Only after ALL commits are done, run step 5 (push) once.
 
-1. Update the changelog file in `.claude/changes/`.
-2. Stage ONLY the confirmed target files/paths — never the whole repo
-   unless the user explicitly asked for everything:
-
-```bash
-git add <target-file-1> <target-file-2> ...
-```
-
-   Also stage the changelog file itself:
+1. Update the changelog file in `.claude/changes/` with this commit's entry
+   (append, don't overwrite).
+2. Stage ONLY this commit's target file(s) — never the whole repo unless
+   the user explicitly asked for everything:
 
 ```bash
+git add <target-file(s)-for-this-commit>
 git add .claude/changes/YYMMDD.md
 ```
 
@@ -343,13 +365,16 @@ EOF
 git status
 ```
 
-5. Push the changes:
+Repeat 1–4 for the next target/group, if any.
+
+5. Once every target has its own commit, push all of them together:
 
 ```bash
 git push
 ```
 
-6. Report success or failure.
+6. Report success or failure, listing each commit hash + message that was
+   created.
 
 ---
 
@@ -358,6 +383,9 @@ git push
 - **Never stage the entire repo blindly.** No bare `git add .` / `git add -A`
   unless the user explicitly asked to commit everything. Always work off an
   explicit target list (files/paths).
+- **Never bundle multiple unrelated targets into one commit by default.**
+  One commit per target file unless the user explicitly says two or more
+  files are the same change, or the diffs make that unambiguous.
 - If no targets were given and the request is generic ("commit",
   "commita"), stop and ask the user which files/paths to commit — this is
   the one case where clarification is required before proceeding.
