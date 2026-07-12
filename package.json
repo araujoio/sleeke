@@ -1,6 +1,6 @@
 {
   "name": "sleeke",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Nextjs template generator",
   "author": "araujoio",
   "license": "MIT",
@@ -22,7 +22,7 @@
     ".": "./dist/index.js"
   },
   "bin": {
-    "luxw": "dist/index.js"
+    "sleeke": "dist/index.js"
   },
   "files": [
     "dist"
