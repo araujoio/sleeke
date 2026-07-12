@@ -1,8 +1,9 @@
-import { FileSystem } from "@/lib/file-system";
+import fsExtra from "fs-extra/esm";
 import path from "path";
 
-const fileSystem: FileSystem = new FileSystem();
 const templatePath: string = path.join(process.cwd(), "src", "templates");
 const distPath: string = path.join(process.cwd(), "dist", "templates");
 
-fileSystem.copy(templatePath, distPath);
+if (fsExtra.pathExistsSync(templatePath)) {
+  fsExtra.copySync(templatePath, distPath);
+}
