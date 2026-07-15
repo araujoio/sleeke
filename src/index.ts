@@ -8,9 +8,8 @@ async function main() {
   const program = new Command();
 
   program
-    .name("luxm")
-    .description("a modern generator for nextjs projects")
-    .version("1.0.0");
+    .name("sleeke")
+    .description("a modern generator for nextjs projects");
 
   program.addCommand(init).addCommand(add).addCommand(rm).addCommand(mv);
 
