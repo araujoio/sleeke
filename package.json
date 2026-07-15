@@ -10,11 +10,13 @@
   },
   "keywords": [
     "sleeke",
-    "cli",
-    "nextjs",
     "react",
-    "typescript",
-    "tailwind"
+    "web",
+    "front-end",
+    "cli",
+    "next",
+    "vite",
+    "server"
   ],
   "type": "module",
   "main": "dist/index.js",
