@@ -1,0 +1,22 @@
+# dependencies
+node_modules/
+
+# environment variables
+.env
+.env.example
+
+# logs folder
+logs/
+
+# editor files
+.vscode/
+.idea/
+.history/
+
+# temp files
+*.tmp
+*.temp
+
+# mcps
+opencode.json
+
