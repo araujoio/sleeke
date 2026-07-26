@@ -34,7 +34,7 @@
   },
   "scripts": {
     "dev": "tsup --watch",
-    "build": "tsup --clean && tsx src/utils/copy-templates.ts",
+    "build": "npm run format && npm run lint && tsup --clean && tsx src/utils/copy-templates.ts",
     "start": "node dist/index.js",
     "clean": "rimraf dist",
     "typecheck": "tsc --noEmit",

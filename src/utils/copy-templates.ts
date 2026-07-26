@@ -8,7 +8,11 @@ const filter = (src: string) => {
   const relative = path.relative(templatePath, src);
   if (!relative) return true;
   const parts = relative.split(path.sep);
-  if (parts[0] === "node_modules" || parts[0] === ".next" || parts[0] === "bun.lock") {
+  if (
+    parts[0] === "node_modules" ||
+    parts[0] === ".next" ||
+    parts[0] === "bun.lock"
+  ) {
     return false;
   }
   return true;

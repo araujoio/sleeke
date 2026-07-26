@@ -31,21 +31,24 @@ function copyDirectory(src: string, dest: string) {
 
 export async function init(name: string) {
   const target = resolve(process.cwd(), name);
-  const templatePath = join(dirname(fileURLToPath(import.meta.url)), "templates");
+  const templatePath = join(
+    dirname(fileURLToPath(import.meta.url)),
+    "templates"
+  );
 
   try {
     if (!existsSync(templatePath)) {
       throw new Error(`Source directory ${templatePath} does not exist.`);
     }
-    
+
     if (existsSync(target)) {
       throw new Error(`Directory ${target} already exists.`);
     }
-    
+
     copyDirectory(templatePath, target);
 
-    console.log(`Project ${name} created successfully.`);
-
+    console.log(`Initialized empty project in ${process.cwd()}/${name}`);
+    console.log(`Change into the directory: cd ${name}`);
   } catch (error) {
     console.error(error);
     process.exit(1);

@@ -99,12 +99,7 @@ export function Header() {
             onClick={() => setMenuOpen(!menuOpen)}
             className="ml-auto flex h-8 w-8 cursor-pointer items-center justify-center rounded-md border border-border lg:hidden"
           >
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              fill="none"
-            >
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
               {menuOpen ? (
                 <path
                   d="M5 5L15 15M15 5L5 15"

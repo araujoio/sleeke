@@ -36,9 +36,8 @@ export function InfiniteMarquee({
 
   const measure = () => {
     if (!trackRef.current) return;
-    const secondBlockFirstChild = trackRef.current.children[
-      itemCount
-    ] as HTMLElement | undefined;
+    const secondBlockFirstChild = trackRef.current.children[itemCount] as
+      HTMLElement | undefined;
 
     if (secondBlockFirstChild) {
       period.current = secondBlockFirstChild.offsetLeft;
