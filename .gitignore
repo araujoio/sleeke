@@ -17,6 +17,12 @@ logs/
 *.tmp
 *.temp
 
-# mcps
-opencode.json
+# lock files
+*.lock
+
+# build files
+*.build
+
+# deployment files
+*.deploy
 
