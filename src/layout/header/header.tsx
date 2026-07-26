@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-import { Logo } from "@layout/share/logo";
+import { Logo } from "@/layout/shared/logo";
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);

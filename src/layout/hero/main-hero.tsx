@@ -1,5 +1,5 @@
-import { InfiniteMarquee } from "@layout/shared/infinite-marquee";
-import { Logo } from "@layout/shared/logo";
+import { InfiniteMarquee } from "@/layout/shared/infinite-marquee";
+import { Logo } from "@/layout/shared/logo";
 
 const brands = Array.from({ length: 8 }, (_, i) => ({
   id: i,
