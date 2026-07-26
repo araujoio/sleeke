@@ -17,6 +17,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src/**/*", "src/templates/src/layout/.templates"],
+  "include": ["src/**/*"],
   "exclude": ["node_modules", "dist", "src/templates", "src/layout"]
 }
