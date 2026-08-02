@@ -1,5 +1,4 @@
 import "@/styles/globals.css";
-import { ThemeProvider } from "@wrksz/themes/next";
 import { notFound } from "next/navigation";
 import { getMessages, NextIntlClientProvider, hasLocale } from "next-intl";
 import { routing } from "@/i18n/routing";
@@ -22,7 +21,7 @@ export default async function RootLayout({
       <body className="antialiased">
         <CookieUpdater locale={locale} />
         <NextIntlClientProvider messages={messages}>
-          <ThemeProvider>{children}</ThemeProvider>
+          {children}
         </NextIntlClientProvider>
       </body>
     </html>
