@@ -16,7 +16,7 @@ export default function NotFound() {
     <div>
       <h1>{t("not-found.title")}</h1>
       <p>{t("not-found.description")}</p>
-      
+
       <Link href="/" className="text-blue-500 cursor-pointer hover:underline">
         {t("not-found.action")}
       </Link>

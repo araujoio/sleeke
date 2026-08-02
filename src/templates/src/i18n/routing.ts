@@ -6,6 +6,6 @@ export const routing = defineRouting({
   defaultLocale: sleeke.i18n.defaultLocale,
   localePrefix: "always",
   pathnames: {
-    "/": "/"
+    "/": "/",
   },
 });

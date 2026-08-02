@@ -18,7 +18,11 @@ async function loadProductionMessages(locale: string): Promise<Messages> {
   const cached = cache.get(locale);
   if (cached) return cached;
 
-  const filePath = path.join(process.cwd(), "next/server/messages", `${locale}.json`);
+  const filePath = path.join(
+    process.cwd(),
+    "next/server/messages",
+    `${locale}.json`
+  );
 
   if (!existsSync(filePath)) {
     throw new Error(
@@ -43,7 +47,7 @@ async function loadDevelopmentMessages(locale: string): Promise<Messages> {
   const dir = path.join(process.cwd(), localeDirectory, locale);
 
   if (!existsSync(dir)) return {};
-  
+
   const messages: Messages = {};
   await collectJsonFiles(dir, messages);
   return messages;
