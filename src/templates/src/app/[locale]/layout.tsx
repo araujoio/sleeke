@@ -1,8 +1,8 @@
 import "@/styles/globals.css";
 import { notFound } from "next/navigation";
-import { getMessages, NextIntlClientProvider, hasLocale } from "next-intl";
+import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { routing } from "@/i18n/routing";
-import { CookieUpdater } from "@/components/cookie-updater";
+import { getMessages } from 'next-intl/server';
 
 export default async function RootLayout({
   children,
@@ -17,9 +17,8 @@ export default async function RootLayout({
   const messages = await getMessages();
 
   return (
-    <html suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning>
       <body className="antialiased">
-        <CookieUpdater locale={locale} />
         <NextIntlClientProvider messages={messages}>
           {children}
         </NextIntlClientProvider>
