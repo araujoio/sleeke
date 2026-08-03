@@ -8,17 +8,25 @@ import type { AbstractIntlMessages } from "next-intl";
 const cache = new Map<string, AbstractIntlMessages>();
 const isProd = process.env.NODE_ENV === "production";
 
-export async function loadMessages(locale: string): Promise<AbstractIntlMessages> {
+export async function loadMessages(
+  locale: string
+): Promise<AbstractIntlMessages> {
   return isProd
     ? loadProductionMessages(locale)
     : loadDevelopmentMessages(locale);
 }
 
-async function loadProductionMessages(locale: string): Promise<AbstractIntlMessages> {
+async function loadProductionMessages(
+  locale: string
+): Promise<AbstractIntlMessages> {
   const cached = cache.get(locale);
   if (cached) return cached;
 
-  const filePath = path.join(process.cwd(), "next/server/messages", `${locale}.json`);
+  const filePath = path.join(
+    process.cwd(),
+    "next/server/messages",
+    `${locale}.json`
+  );
 
   if (!existsSync(filePath)) {
     throw new Error(
@@ -38,7 +46,9 @@ async function loadProductionMessages(locale: string): Promise<AbstractIntlMessa
   }
 }
 
-async function loadDevelopmentMessages(locale: string): Promise<AbstractIntlMessages> {
+async function loadDevelopmentMessages(
+  locale: string
+): Promise<AbstractIntlMessages> {
   const dir = path.join(process.cwd(), "src/locales", locale);
 
   if (!existsSync(dir)) return {};
@@ -48,7 +58,10 @@ async function loadDevelopmentMessages(locale: string): Promise<AbstractIntlMess
   return messages;
 }
 
-async function collectJsonFiles(dir: string, target: AbstractIntlMessages): Promise<void> {
+async function collectJsonFiles(
+  dir: string,
+  target: AbstractIntlMessages
+): Promise<void> {
   const entries = await fs.readdir(dir, { withFileTypes: true });
 
   for (const entry of entries) {
@@ -62,5 +75,3 @@ async function collectJsonFiles(dir: string, target: AbstractIntlMessages): Prom
     }
   }
 }
-
-
