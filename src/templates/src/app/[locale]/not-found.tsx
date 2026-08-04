@@ -6,11 +6,11 @@ import { useEffect } from "react";
 
 export default function NotFound() {
   const t = useTranslations("errors");
-  const common = useTranslations("common");
+  const meta = useTranslations("meta");
 
   useEffect(() => {
-    document.title = `${t("not-found.title")} | ${common("meta.site-name")}`;
-  }, [t, common]);
+    document.title = `${t("not-found.title")} | ${meta("title")}`;
+  }, [t, meta]);
 
   return (
     <div>
@@ -18,7 +18,7 @@ export default function NotFound() {
       <p>{t("not-found.description")}</p>
 
       <Link href="/" className="cursor-pointer text-blue-500 hover:underline">
-        {t("not-found.action")}
+        {t("not-found.button-action")}
       </Link>
     </div>
   );
