@@ -49,7 +49,7 @@ async function loadProductionMessages(
 async function loadDevelopmentMessages(
   locale: string
 ): Promise<AbstractIntlMessages> {
-  const dir = path.join(process.cwd(), "src/locales", locale);
+  const dir = path.join(process.cwd(), "src/messages", locale);
 
   if (!existsSync(dir)) return {};
 
