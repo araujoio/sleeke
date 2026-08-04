@@ -2,7 +2,18 @@ import "@/styles/globals.css";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { routing } from "@/i18n/routing";
-import { getMessages } from 'next-intl/server';
+import { getMessages, getTranslations } from "next-intl/server";
+import type { Metadata } from "next";
+
+export async function generateMetadata({ params }: any): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "meta" });
+
+  return {
+    title: t("meta.title"),
+    description: t("meta.description"),
+  };
+}
 
 export default async function RootLayout({
   children,
