@@ -11,23 +11,23 @@ export default function ErrorPage({
   unstable_retry: () => void;
 }) {
   const t = useTranslations("errors");
-  const common = useTranslations("common");
+  const meta = useTranslations("meta");
 
   useEffect(() => {
     console.error("Application error:", error);
-    document.title = `${t("internal.title")} | ${common("meta.site-name")}`;
-  }, [error, t, common]);
+    document.title = `${t("server-error.title")} | ${meta("title")}`;
+  }, [error, t, meta]);
 
   return (
     <div>
-      <h1>{t("internal.title")}</h1>
-      <p>{t("internal.description")}</p>
+      <h1>{t("server-error.title")}</h1>
+      <p>{t("server-error.description")}</p>
       <button
         type="button"
         onClick={() => unstable_retry()}
         className="cursor-pointer bg-transparent border-none p-0 m-0 [font:inherit] text-blue-500 hover:underline"
       >
-        {t("internal.try-again")}
+        {t("server-error.button-action")}
       </button>
     </div>
   );
