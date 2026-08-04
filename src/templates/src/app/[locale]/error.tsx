@@ -5,11 +5,9 @@ import { useEffect } from "react";
 
 export default function ErrorPage({
   error,
-  reset,
   unstable_retry,
 }: {
   error: Error & { digest?: string };
-  reset: () => void;
   unstable_retry: () => void;
 }) {
   const t = useTranslations("errors");
@@ -18,7 +16,7 @@ export default function ErrorPage({
   useEffect(() => {
     console.error("Application error:", error);
     document.title = `${t("internal.title")} | ${common("meta.site-name")}`;
-  }, [error]);
+  }, [error, t, common]);
 
   return (
     <div>
@@ -26,10 +24,8 @@ export default function ErrorPage({
       <p>{t("internal.description")}</p>
       <button
         type="button"
-        onClick={() => {
-          unstable_retry();
-        }}
-        className="text-blue-500 cursor-pointer hover:underline bg-transparent border-none p-0 m-0 font-inherit"
+        onClick={() => unstable_retry()}
+        className="cursor-pointer bg-transparent border-none p-0 m-0 [font:inherit] text-blue-500 hover:underline"
       >
         {t("internal.try-again")}
       </button>
