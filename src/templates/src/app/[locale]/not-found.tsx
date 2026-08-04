@@ -1,8 +1,8 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { useEffect } from "react";
 import { Link } from "@/i18n/navigation";
+import { useEffect } from "react";
 
 export default function NotFound() {
   const t = useTranslations("errors");
@@ -17,7 +17,7 @@ export default function NotFound() {
       <h1>{t("not-found.title")}</h1>
       <p>{t("not-found.description")}</p>
 
-      <Link href="/" className="text-blue-500 cursor-pointer hover:underline">
+      <Link href="/" className="cursor-pointer text-blue-500 hover:underline">
         {t("not-found.action")}
       </Link>
     </div>
