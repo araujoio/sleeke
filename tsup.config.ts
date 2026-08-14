@@ -10,7 +10,9 @@ export default defineConfig({
   splitting: false,
   outDir: 'dist',
   target: 'node20',
+  platform: 'node',
   treeshake: true,
+  external: ['jiti'],
   banner: {
     js: '#!/usr/bin/env node',
   },
