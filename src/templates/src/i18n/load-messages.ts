@@ -2,7 +2,6 @@ import path from "node:path";
 import { existsSync } from "node:fs";
 import fs from "node:fs/promises";
 
-import { readJson } from "@/utils/readJson";
 import type { AbstractIntlMessages } from "next-intl";
 
 const cache = new Map<string, AbstractIntlMessages>();
@@ -74,4 +73,10 @@ async function collectJsonFiles(
       Object.assign(target, content);
     }
   }
+}
+
+async function readJson(filePath: string): Promise<AbstractIntlMessages> {
+  const raw = await fs.readFile(filePath, "utf-8");
+  if (!raw.trim()) return {};
+  return JSON.parse(raw);
 }
