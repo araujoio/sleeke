@@ -65,4 +65,3 @@ export async function init(name: string) {
     process.exit(1);
   }
 }
-

@@ -239,4 +239,3 @@ export function translateSet(
 
   console.log(`✓ [${locale}] "${key}" translated.`);
 }
-

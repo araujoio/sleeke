@@ -277,4 +277,3 @@ export async function validate(): Promise<void> {
     process.exit(1);
   }
 }
-
