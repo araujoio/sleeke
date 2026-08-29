@@ -21,20 +21,16 @@ async function loadProductionMessages(
   const cached = cache.get(locale);
   if (cached) return cached;
 
-  const filePath = path.join(
-    process.cwd(),
-    "next/server/messages",
-    `${locale}.json`
-  );
+  const dir = path.join(process.cwd(), "src/messages", `${locale}.json`);
 
-  if (!existsSync(filePath)) {
+  if (!existsSync(dir)) {
     throw new Error(
       `Failed to initialize application in production.\nMissing localization bundles for locale "${locale}". Run the build before starting the production server.`
     );
   }
 
   try {
-    const messages = await readJson(filePath);
+    const messages = await readJson(dir);
     cache.set(locale, messages);
     return messages;
   } catch (error) {

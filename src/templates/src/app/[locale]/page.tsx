@@ -1,4 +1,3 @@
-import { useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
 
 export async function generateMetadata() {
@@ -10,8 +9,8 @@ export async function generateMetadata() {
   };
 }
 
-export default function Home() {
-  const t = useTranslations("home");
+export default async function Home() {
+  const t = await getTranslations("home");
   return (
     <>
       <h1>{t("title")}</h1>
